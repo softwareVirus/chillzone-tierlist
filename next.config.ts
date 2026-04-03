@@ -27,7 +27,7 @@ const nextConfig: NextConfig = {
     config.resolve.modules = [localNodeModules, ...rest];
     return config;
   },
-  serverExternalPackages: ["better-sqlite3"],
+  serverExternalPackages: ["pg", "@prisma/adapter-pg"],
   images: {
     remotePatterns: [
       {
