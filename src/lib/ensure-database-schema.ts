@@ -5,11 +5,19 @@ let migrateDeployDone = false;
 
 /**
  * Apply pending Prisma migrations so tables (e.g. User) exist before any query.
- * Runs at most once per server process. Set CHILLZONE_SKIP_AUTO_MIGRATE=1 to skip.
+ * Runs at most once per server process.
+ *
+ * Skipped on Vercel (VERCEL=1): run migrations at build time via `npm run build:vercel`
+ * so the CLI is not required in the serverless runtime.
+ *
+ * Set CHILLZONE_SKIP_AUTO_MIGRATE=1 to skip elsewhere.
  */
 export function runPrismaMigrateDeploy(): void {
   if (migrateDeployDone) return;
-  if (process.env.CHILLZONE_SKIP_AUTO_MIGRATE === "1") {
+  if (
+    process.env.VERCEL === "1" ||
+    process.env.CHILLZONE_SKIP_AUTO_MIGRATE === "1"
+  ) {
     migrateDeployDone = true;
     return;
   }

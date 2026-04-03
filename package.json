@@ -6,6 +6,7 @@
     "dev": "next dev --webpack",
     "dev:turbo": "next dev",
     "build": "prisma generate && next build",
+    "build:vercel": "prisma migrate deploy && prisma generate && next build",
     "start": "next start",
     "lint": "eslint",
     "postinstall": "prisma generate",
@@ -26,7 +27,8 @@
     "pg": "^8.20.0",
     "react": "19.2.4",
     "react-day-picker": "^9.14.0",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "prisma": "^7.6.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -37,7 +39,6 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.2",
-    "prisma": "^7.6.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
